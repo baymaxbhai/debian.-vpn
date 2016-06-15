@@ -1,5 +1,7 @@
+#!/bin/bash
 # install dropbear
-apt-get -y install dropbear
+
+su apt-get -y install dropbear
 
 sed -i 's/NO_START=1/NO_START=0/g' /etc/default/dropbear
 sed -i 's/DROPBEAR_PORT=22/DROPBEAR_PORT=443/g' /etc/default/dropbear
@@ -19,7 +21,6 @@ wget -O userlimit.sh "https://raw.githubusercontent.com/baymaxbhai/debian7os/mas
 wget -O expire.sh "https://raw.githubusercontent.com/baymaxbhai/debian7os/master/expire.sh"
 wget -O autokill.sh "https://raw.githubusercontent.com/baymaxbhai/debian7os/master/autokill.sh"
 echo "@reboot root /root/userlimit.sh" > /etc/cron.d/userlimit
-echo "0 */** * * * root /sbin/reboot" > /etc/cron.d/reboot
 echo "* * * * * service dropbear restart" > /etc/cron.d/dropbear
 echo "@reboot root /root/autokill.sh" > /etc/cron.d/autokill
 sed -i '$ i\screen -AmdS check /root/autokill.sh' /etc/rc.local
