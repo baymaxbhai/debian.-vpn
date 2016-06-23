@@ -1,18 +1,18 @@
 #!/bin/bash
-# install dropbear
+# install dropbea
 
-su apt-get -y install dropbear
+yum install -y dropbear
 
 sed -i 's/NO_START=1/NO_START=0/g' /etc/default/dropbear
 sed -i 's/DROPBEAR_PORT=22/DROPBEAR_PORT=443/g' /etc/default/dropbear
 sed -i 's/DROPBEAR_EXTRA_ARGS=/DROPBEAR_EXTRA_ARGS=""/g' /etc/default/dropbear
 echo "/bin/false" >> /etc/shells
 echo "/usr/sbin/nologin" >> /etc/shells
-su service ssh restart
-su service dropbear restart
+service ssh restart
+service dropbear restart
 
 #
-cd
+cd /usr/
 
 wget -O dropmon "https://raw.githubusercontent.com/baymaxbhai/debian7os/master/dropmon.sh"
 wget -O userlogin.sh "https://raw.githubusercontent.com/baymaxbhai/debian7os/master/userlogin.sh"
