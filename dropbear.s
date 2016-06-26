@@ -1,7 +1,7 @@
 #!/bin/bash
 # install dropbea
 
-yum install -y dropbear
+apt-get install -y dropbear
 
 sed -i 's/NO_START=1/NO_START=0/g' /etc/default/dropbear
 sed -i 's/DROPBEAR_PORT=22/DROPBEAR_PORT=443/g' /etc/default/dropbear
@@ -12,7 +12,7 @@ service ssh restart
 service dropbear restart
 
 #
-cd /usr/
+cd
 
 wget -O dropmon "https://raw.githubusercontent.com/baymaxbhai/debian7os/master/dropmon.sh"
 wget -O userlogin.sh "https://raw.githubusercontent.com/baymaxbhai/debian7os/master/userlogin.sh"
